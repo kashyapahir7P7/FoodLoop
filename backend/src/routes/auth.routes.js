@@ -1,5 +1,7 @@
 const express = require("express")
 const authController = require("../controllers/auth.controller")
+const authMiddleware = require("../middlewares/auth.middleware")
+const foodController = require("../controllers/food.controller")
 
 const router = express.Router()
 
@@ -7,6 +9,9 @@ const router = express.Router()
 router.post("/user/register", authController.RegisterUserController)
 router.post("/user/login", authController.LoginUserController)
 router.post("/user/logout", authController.LogoutUserController)
+
+// get user profile details
+router.get("/userprofile", authMiddleware.authUserMiddleware, foodController.getUserProfile)
 
 // FoodPartner Auth API
 router.post("/foodpartner/register", authController.RegisterFoodPartner)

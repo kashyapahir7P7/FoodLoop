@@ -82,7 +82,7 @@ async function LogoutUserController(req, res) {
 // Food Parter Controller
 
 async function RegisterFoodPartner(req, res) {
-    const { name, email, password } = req.body
+    const { name, email, password, contactName, phone } = req.body
 
     const IsuseralreadyExist = await foodParterModel.findOne({ email })
 
@@ -94,7 +94,7 @@ async function RegisterFoodPartner(req, res) {
 
     const hashPassword = await bcrypt.hash(password, 10)
 
-    const foodPartner = await foodParterModel.create({ email, name, password: hashPassword })
+    const foodPartner = await foodParterModel.create({ email, name, password: hashPassword, contactName, phone })
 
     const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET)
     res.cookie("token", token)
@@ -104,7 +104,9 @@ async function RegisterFoodPartner(req, res) {
         foodPartner: {
             _id: foodPartner._id,
             email: foodPartner.email,
-            name: foodPartner.name
+            name: foodPartner.name,
+            contactName : foodPartner.contactName,
+            phone: foodPartner.phone
         }
     })
 

@@ -1,0 +1,427 @@
+/* =========================================
+   FOODLOOP PROFILE PAGE - AESTHETIC DARK UI
+   Premium Modern Mobile First Design
+========================================= */
+
+.profile-page {
+  .profile-page {
+  min-height: 100dvh;
+  overflow-y: auto;
+}
+  width: 100%;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(34, 197, 94, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(59, 130, 246, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #050505 0%, #0d0d0d 100%);
+  color: #ffffff;
+}
+
+/* Main container */
+.profile-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   Loading State
+========================================= */
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   PROFILE HEADER
+========================================= */
+
+.profile-header {
+  position: relative;
+  padding: 28px 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+/* Top Section */
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* =========================================
+   AVATAR
+========================================= */
+
+.profile-avatar {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 3px;
+
+  background: linear-gradient(135deg, #22c55e, #3b82f6, #9333ea);
+
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.35),
+    0 0 40px rgba(147, 51, 234, 0.25);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #111;
+}
+
+/* =========================================
+   BUSINESS INFO
+========================================= */
+
+.profile-info {
+  flex: 1;
+}
+
+.business-name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.business-address {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   PROFILE BIO TAG
+========================================= */
+
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 10px;
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+
+  color: #4ade80;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   STATS SECTION
+========================================= */
+
+.profile-stats {
+  margin-top: 28px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* =========================================
+   STAT CARD
+========================================= */
+
+.stat-box {
+  position: relative;
+  overflow: hidden;
+
+  padding: 18px;
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(16px);
+
+  transition: all 0.3s ease;
+}
+
+.stat-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.08),
+    rgba(59, 130, 246, 0.08)
+  );
+
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.stat-box:hover::before {
+  opacity: 1;
+}
+
+.stat-box:hover {
+  transform: translateY(-3px);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Label */
+
+.stat-label {
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+/* Value */
+
+.stat-value {
+  margin-top: 8px;
+  margin-bottom: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  background: linear-gradient(135deg, #22c55e, #3b82f6);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================
+   VIDEOS GRID
+========================================= */
+
+.videos-grid {
+  padding: 14px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* =========================================
+   VIDEO ITEM
+========================================= */
+
+.video-item {
+  position: relative;
+  overflow: hidden;
+
+  aspect-ratio: 9 / 16;
+
+  border-radius: 16px;
+
+  background: #151515;
+
+  cursor: pointer;
+
+  transition: transform 0.25s ease;
+}
+
+.video-item:hover {
+  transform: scale(0.97);
+}
+
+/* Video */
+
+.video-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay */
+
+.video-item::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 45%);
+}
+
+/* =========================================
+   PLAY ICON
+========================================= */
+
+.video-item .play-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 14px;
+
+  z-index: 5;
+}
+
+/* =========================================
+   REEL MODAL
+========================================= */
+
+.reel-modal {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.92);
+
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s ease;
+}
+
+.reel-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reel-modal-content {
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(10px);
+
+  color: white;
+  font-size: 18px;
+
+  cursor: pointer;
+
+  z-index: 1000;
+
+  transition: 0.25s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* =========================================
+   MOBILE OPTIMIZATION
+========================================= */
+
+@media (max-width: 480px) {
+  .profile-header {
+    padding: 24px 16px 22px;
+  }
+
+  .profile-top {
+    gap: 14px;
+  }
+
+  .profile-avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  .business-name {
+    font-size: 20px;
+  }
+
+  .business-address {
+    font-size: 12px;
+  }
+
+  .profile-stats {
+    gap: 12px;
+  }
+
+  .stat-box {
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .videos-grid {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .video-item {
+    border-radius: 12px;
+  }
+}

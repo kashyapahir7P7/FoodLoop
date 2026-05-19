@@ -1,0 +1,20 @@
+/* Import all global styles */
+@import "./styles/theme.css";
+@import "./styles/forms.css";
+@import "./styles/auth-page.css";
+
+/* App Wrapper */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}

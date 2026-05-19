@@ -1,0 +1,310 @@
+/* =========================================
+   FOODLOOP PREMIUM REEL CARD
+========================================= */
+
+.reel-card {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: #000;
+}
+
+/* =========================================
+   VIDEO
+========================================= */
+
+.reel-video-container {
+  position: absolute;
+  inset: 0;
+}
+
+.reel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reel-loading-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.reel-gradient-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.55) 30%,
+    rgba(0,0,0,0.15) 60%,
+    rgba(0,0,0,0.05) 100%
+  );
+
+  z-index: 1;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.reel-content-overlay {
+  position: absolute;
+  bottom: 110px;
+  left: 0;
+
+  width: 100%;
+  padding: 20px;
+
+  z-index: 5;
+}
+
+.reel-info {
+  max-width: 75%;
+}
+
+.reel-store-name {
+  color: rgba(255,255,255,0.75);
+  font-size: 12px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.reel-title {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.reel-description {
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  line-height: 1.6;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.reel-visit-button {
+  margin-top: 18px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 22px;
+
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: 0.3s ease;
+}
+
+.reel-visit-button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.reel-sidebar {
+  position: absolute;
+  right: 14px;
+  bottom: 142px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  z-index: 10;
+}
+
+.sidebar-action {
+  background: transparent;
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  color: white;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.sidebar-action:hover {
+  transform: scale(1.08);
+}
+
+.sidebar-action span {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Like Active */
+
+.active-like {
+  color: #ff2d55;
+}
+
+/* Save Active */
+
+.active-save {
+  color: #ffffff;
+}
+
+/* =========================================
+   BOTTOM NAVBAR
+========================================= */
+
+.bottom-reel-navbar {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 30px);
+  max-width: 420px;
+
+  height: 64px;
+
+  background: rgba(15, 15, 15, 0.163);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  z-index: 20;
+}
+
+.bottom-nav-item {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 14px;
+
+  border: none;
+  background: transparent;
+
+  color: rgba(255,255,255,0.65);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.bottom-nav-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.active-nav {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .reel-title {
+    font-size: 24px;
+  }
+
+  .reel-description {
+    font-size: 13px;
+  }
+
+  .reel-info {
+    max-width: 72%;
+  }
+
+  .reel-sidebar {
+    right: 10px;
+    bottom: 100px;
+  }
+
+  .bottom-reel-navbar {
+    height: 58px;
+    border-radius: 18px;
+  }
+
+}
+
+/* =========================================
+   LARGE SCREEN
+========================================= */
+
+@media (min-width: 1200px) {
+
+  .reel-content-overlay {
+    padding: 40px;
+  }
+
+  .reel-title {
+    font-size: 42px;
+  }
+
+  .reel-description {
+    font-size: 15px;
+    max-width: 520px;
+  }
+
+}

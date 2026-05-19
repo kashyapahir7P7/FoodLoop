@@ -1,0 +1,144 @@
+/* ===================================
+   AUTH PAGE LAYOUT STYLES
+   Layout and positioning for auth pages
+   ==================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+  padding: var(--spacing-lg);
+}
+
+.auth-page-content {
+  width: 100%;
+  max-width: 500px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Grid for Side-by-Side (Desktop) */
+.auth-page-two-column {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+}
+
+.auth-page-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.auth-page-column-left {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: #ffffff;
+  display: none; /* Hidden on mobile */
+}
+
+.auth-page-column-left h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-lg);
+  color: #ffffff;
+}
+
+.auth-page-column-left p {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  opacity: 0.95;
+  margin-bottom: var(--spacing-lg);
+}
+
+.auth-page-column-right {
+  background-color: var(--color-bg-primary);
+  border-left: 1px solid var(--color-border);
+}
+
+.auth-page-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.auth-page-benefit-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+}
+
+.auth-page-benefit-text h4 {
+  font-size: var(--font-size-base);
+  color: #ffffff;
+  margin-bottom: var(--spacing-xs);
+}
+
+.auth-page-benefit-text p {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-page-two-column {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .auth-page-column-left {
+    display: none;
+  }
+
+  .auth-page-column-right {
+    border-left: none;
+    min-height: 100vh;
+  }
+
+  .auth-page {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 769px) {
+  .auth-page-column-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: var(--spacing-sm);
+  }
+
+  .auth-page-column {
+    padding: var(--spacing-md);
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+}

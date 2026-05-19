@@ -6,6 +6,14 @@ const foodparterSchema = new mongoose.Schema({
         required: true
 
     },
+    contactName:{
+        type: String,
+        required: true
+    },
+    phone:{
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         unique: true,
