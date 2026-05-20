@@ -38,6 +38,9 @@ const SavedFeed = () => {
     return (
 
         <div className="reels-feed-container">
+            <div className="top-feed-title">
+                <h2>Saved</h2>
+            </div>
 
             {
                 savedFoods.map((item) => (

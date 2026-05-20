@@ -12,20 +12,22 @@ import LikedFeed from '../components/LikedFeed';
 
 const AppRoutes = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/user/register" element={<UserRegister />} />
-        <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/foodpartner/register" element={<FoodPartnerRegister />} />
-        <Route path="/foodpartner/login" element={<FoodPartnerLogin />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/userprofile" element={<UserProfile />} />
-        <Route path="/create-food" element={<CreateFood />} />
-        <Route path="/foodpartner/:id" element={<Profile />} />
-        <Route path="/saved" element={<SavedFeed />} />
-        <Route path="/liked" element={<LikedFeed />} />
-      </Routes>
-    </Router>
+    <div className="app-container">
+      <Router>
+        <Routes>
+          <Route path="/user/register" element={<UserRegister />} />
+          <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/foodpartner/register" element={<FoodPartnerRegister />} />
+          <Route path="/foodpartner/login" element={<FoodPartnerLogin />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/create-food" element={<CreateFood />} />
+          <Route path="/foodpartner/:id" element={<Profile />} />
+          <Route path="/saved" element={<SavedFeed />} />
+          <Route path="/liked" element={<LikedFeed />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

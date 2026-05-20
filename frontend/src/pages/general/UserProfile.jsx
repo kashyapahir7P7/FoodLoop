@@ -7,7 +7,8 @@ import {
     LogOut,
     ChevronRight,
     Calendar,
-    Settings
+    Settings,
+    ArrowLeft
 } from 'lucide-react';
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -65,6 +66,10 @@ const UserProfile = () => {
 
             {/* HEADER */}
             <div className="profile-header">
+
+                <button className="back-btn" onClick={() => navigate(-1)} >
+                    <ArrowLeft size={24} />
+                </button>
 
                 <h1>Profile</h1>
 

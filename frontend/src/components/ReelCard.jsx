@@ -5,8 +5,8 @@ import {
     MessageCircle,
     Bookmark,
     Home,
-    User,
-} from 'lucide-react';
+    User} from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 import { useVideoVisibility } from '../hooks/useVideoVisibility';
 import '../styles/reel-card.css';
@@ -20,6 +20,8 @@ const ReelCard = ({ reel }) => {
     const [likeCount, setLikeCount] = useState(reel.likeCount || 0);
     const [saved, setSaved] = useState(reel.isSaved || false);
     const [saveCount, setSaveCount] = useState(reel.saveCount || 0);
+
+    const location = useLocation();
 
     const handleLike = async () => {
 
@@ -159,15 +161,24 @@ const ReelCard = ({ reel }) => {
             <div className="bottom-reel-navbar">
 
 
-                <Link to="/" className="bottom-nav-item active-nav">
+                <Link to="/" className={`bottom-nav-item ${location.pathname === "/"
+                    ? "active-nav"
+                    : ""
+                    }`}>
                     <Home size={24} />
                 </Link>
 
-                <Link to="/saved" className="bottom-nav-item">
+                <Link to="/saved" className={`bottom-nav-item ${location.pathname === "/saved"
+                    ? "active-nav"
+                    : ""
+                    }`}>
                     <Bookmark size={22} />
                 </Link>
 
-                <Link to="/userprofile" className="bottom-nav-item" >
+                <Link to="/userprofile" className={`bottom-nav-item ${location.pathname === "/userprofile"
+                    ? "active-nav"
+                    : ""
+                    }`}>
                     <User size={22} />
                 </Link>
 

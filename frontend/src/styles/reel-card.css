@@ -5,9 +5,11 @@
 .reel-card {
   position: relative;
   width: 100%;
-  height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
   overflow: hidden;
   scroll-snap-align: start;
+  border-radius: 24px;
   background: #000;
 }
 
@@ -16,13 +18,17 @@
 ========================================= */
 
 .reel-video-container {
-  position: absolute;
-  inset: 0;
+  width: 100%;
+
+  height: 100vh;
+
+  position: relative;
 }
 
 .reel-video {
   width: 100%;
   height: 100%;
+  border-radius: 24px;
   object-fit: cover;
 }
 
@@ -31,9 +37,9 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(255,255,255,0.03) 25%,
-    rgba(255,255,255,0.08) 50%,
-    rgba(255,255,255,0.03) 75%
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
   );
 
   background-size: 200% 100%;
@@ -56,32 +62,34 @@
 
 .reel-gradient-overlay {
   position: absolute;
+
   inset: 0;
 
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.92) 0%,
-    rgba(0,0,0,0.55) 30%,
-    rgba(0,0,0,0.15) 60%,
-    rgba(0,0,0,0.05) 100%
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(0, 0, 0, 0.08) 100%
   );
 
-  z-index: 1;
+  z-index: 2;
 }
-
 /* =========================================
    CONTENT
 ========================================= */
 
 .reel-content-overlay {
   position: absolute;
-  bottom: 110px;
-  left: 0;
 
-  width: 100%;
-  padding: 20px;
+  left: 18px;
+  right: 18px;
+  bottom: 95px;
 
   z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .reel-info {
@@ -89,138 +97,213 @@
 }
 
 .reel-store-name {
-  color: rgba(255,255,255,0.75);
-  font-size: 12px;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+  font-size: 11px;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  margin-bottom: 6px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.8px;
+
   text-transform: uppercase;
 }
 
 .reel-title {
-  color: #fff;
-  font-size: 32px;
+  font-size: 28px;
+
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 10px;
+
+  line-height: 1.05;
+
+  margin-bottom: 8px;
+
+  color: #fff;
 }
 
 .reel-description {
-  color: rgba(255,255,255,0.85);
   font-size: 14px;
-  line-height: 1.6;
 
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+  line-height: 1.45;
 
-  overflow: hidden;
+  color: rgba(255, 255, 255, 0.82);
+
+  margin-bottom: 16px;
+
+  max-width: 250px;
 }
 
 .reel-visit-button {
-  margin-top: 18px;
-
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
-  padding: 14px 22px;
+  height: 44px;
 
-  border-radius: 16px;
+  padding: 0 20px;
 
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(20px);
+  border-radius: 14px;
 
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.92);
 
-  color: #fff;
+  color: #111;
+
   text-decoration: none;
-  font-weight: 600;
+
   font-size: 14px;
 
-  transition: 0.3s ease;
+  font-weight: 700;
+
+  border: none;
+
+  transition: all 0.22s ease;
 }
 
 .reel-visit-button:hover {
-  background: rgba(255,255,255,0.2);
   transform: translateY(-2px);
+
+  background: #ffffff;
 }
 
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .reel-content-overlay {
+    left: 16px;
+    right: 16px;
+    bottom: 92px;
+  }
+
+  .reel-title {
+    font-size: 22px;
+  }
+
+  .reel-description {
+    font-size: 13px;
+    max-width: 220px;
+  }
+
+  .reel-visit-button {
+    height: 40px;
+    padding: 0 18px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+}
 /* =========================================
    SIDEBAR
 ========================================= */
 
 .reel-sidebar {
   position: absolute;
+
   right: 14px;
-  bottom: 142px;
+  bottom: 125px;
 
   display: flex;
   flex-direction: column;
-  gap: 18px;
 
-  z-index: 10;
+  align-items: center;
+
+  gap: 22px;
+
+  z-index: 5;
 }
 
 .sidebar-action {
   background: transparent;
+
   border: none;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
+
+  justify-content: center;
+
   gap: 6px;
 
-  color: white;
+  color: rgba(255, 255, 255, 0.92);
+
   cursor: pointer;
 
-  transition: 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .sidebar-action:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
+}
+
+.sidebar-action svg {
+  stroke-width: 2;
+
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.22));
 }
 
 .sidebar-action span {
-  font-size: 11px;
+  font-size: 12px;
+
   font-weight: 600;
+
+  color: rgba(255, 255, 255, 0.88);
 }
 
-/* Like Active */
+/* =========================================
+   ACTIVE STATES
+========================================= */
 
 .active-like {
   color: #ff2d55;
 }
 
-/* Save Active */
-
 .active-save {
-  color: #ffffff;
+  color: #ffd84d;
 }
 
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .reel-sidebar {
+    right: 12px;
+    bottom: 118px;
+
+    gap: 18px;
+  }
+
+  .sidebar-action span {
+    font-size: 11px;
+  }
+}
 /* =========================================
    BOTTOM NAVBAR
 ========================================= */
 
 .bottom-reel-navbar {
   position: absolute;
+
   bottom: 18px;
   left: 50%;
-
   transform: translateX(-50%);
 
-  width: calc(100% - 30px);
-  max-width: 420px;
+  width: calc(100% - 28px);
+  max-width: 400px;
 
-  height: 64px;
+  height: 58px;
 
-  background: rgba(15, 15, 15, 0.163);
+  background: rgba(20, 20, 20, 0.72);
 
   backdrop-filter: blur(20px);
 
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 
-  border-radius: 22px;
+  border-radius: 18px;
 
   display: flex;
   align-items: center;
@@ -238,7 +321,7 @@
   border: none;
   background: transparent;
 
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
 
   display: flex;
   align-items: center;
@@ -249,12 +332,12 @@
 }
 
 .bottom-nav-item:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
 .active-nav {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
 
@@ -263,9 +346,8 @@
 ========================================= */
 
 @media (max-width: 768px) {
-
   .reel-title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .reel-description {
@@ -285,7 +367,6 @@
     height: 58px;
     border-radius: 18px;
   }
-
 }
 
 /* =========================================
@@ -293,7 +374,6 @@
 ========================================= */
 
 @media (min-width: 1200px) {
-
   .reel-content-overlay {
     padding: 40px;
   }
@@ -306,5 +386,4 @@
     font-size: 15px;
     max-width: 520px;
   }
-
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import ReelCard from './ReelCard';
 import '../styles/reels-feed.css';
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 /**
  * ReelsFeed Component
@@ -12,6 +13,7 @@ const ReelsFeed = () => {
     const feedRef = useRef(null);
     const [currentReelIndex, setCurrentReelIndex] = useState(0);
     const [reels, setReels] = useState([])
+    const navigate = useNavigate()
 
     // Track scroll position for analytics or features
     useEffect(() => {
@@ -34,13 +36,19 @@ const ReelsFeed = () => {
     useEffect(() => {
         axios.get("http://localhost:3000/api/food", { withCredentials: true })
             .then(response => {
-                console.log(response.data)
                 setReels(response.data.foodItems)
+            })
+            .catch(error => {
+                console.log(error)
+                navigate("/user/login")
             })
     }, [])
 
     return (
         <div className="reels-feed-container" ref={feedRef}>
+            <div className="top-feed-title">
+                <h2>Reels</h2>
+            </div>
             {reels.map((reel, index) => (
                 <ReelCard
                     key={reel._id}

@@ -1,18 +1,63 @@
+/* =========================================
+   TOP PAGE TITLE
+========================================= */
+
+.top-feed-title {
+  position: fixed;
+
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 430px;
+
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 30;
+
+  pointer-events: none;
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+}
+
+.top-feed-title h2 {
+  font-size: 18px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+
+  color: white;
+
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
 /* ===========================
    Reels Feed Styles
    Premium Snap-Scrolling Container
    =========================== */
 
 .reels-feed-container {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
+
+  max-width: 460px;
+
   height: 100vh;
+
+  margin: 0 auto;
+
   overflow-y: scroll;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+
   scroll-snap-type: y mandatory;
+  padding: 0 8px;
+
+  background: #000;
 
   /* Hide scrollbar while maintaining functionality */
   scrollbar-width: none;

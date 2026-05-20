@@ -3,18 +3,34 @@
 @import "./styles/forms.css";
 @import "./styles/auth-page.css";
 
-/* App Wrapper */
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+body {
+  background: #000;
 }
 
-html,
-body,
 #root {
   width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.app-container {
+  width: 100%;
+
+  max-width: 430px;
+
+  min-height: 100vh;
+
+  box-shadow: 0 0 40px rgba(255,255,255,0.05);
+
+  background: #000;
+
+  position: relative;
+
+  border-left: 1px solid #1f1f1f;
+
+  border-right: 1px solid #1f1f1f;
 }
