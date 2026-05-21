@@ -33,7 +33,7 @@ export default function UserRegister() {
 
     try {
 
-      const response = await axios.post("http://localhost:3000/api/auth/user/register", {
+      await axios.post("http://localhost:3000/api/auth/user/register", {
         fullName: firstName + " " + lastName,
         email,
         password
@@ -44,7 +44,6 @@ export default function UserRegister() {
 
       form.setValues({ firstName: "", lastName: "", email: "", password: "" })
 
-      console.log(response.data)
 
       navigate("/")
 

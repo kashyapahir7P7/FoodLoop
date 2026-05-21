@@ -9,11 +9,14 @@ import Profile from '../pages/foodpartner/Profile'
 import SavedFeed from '../components/SavedFeed';
 import UserProfile from '../pages/general/UserProfile';
 import LikedFeed from '../components/LikedFeed';
+import FollowingList from '../components/FollowingList';
+import TopLoader from '../components/TopLoader';
 
 const AppRoutes = () => {
   return (
     <div className="app-container">
       <Router>
+        <TopLoader />
         <Routes>
           <Route path="/user/register" element={<UserRegister />} />
           <Route path="/user/login" element={<UserLogin />} />
@@ -25,6 +28,7 @@ const AppRoutes = () => {
           <Route path="/foodpartner/:id" element={<Profile />} />
           <Route path="/saved" element={<SavedFeed />} />
           <Route path="/liked" element={<LikedFeed />} />
+          <Route path="/following" element={<FollowingList />} />
         </Routes>
       </Router>
     </div>

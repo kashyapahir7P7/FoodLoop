@@ -375,11 +375,11 @@
 
 @media (min-width: 1200px) {
   .reel-content-overlay {
-    padding: 40px;
+    padding: 10px;
   }
 
   .reel-title {
-    font-size: 42px;
+    font-size: 25px;
   }
 
   .reel-description {

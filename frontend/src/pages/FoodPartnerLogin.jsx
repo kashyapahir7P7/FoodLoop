@@ -26,13 +26,12 @@ export default function FoodPartnerLogin() {
 
     const { email, password } = form.values
 
-    const response = await axios.post("http://localhost:3000/api/auth/foodpartner/login", {
+     await axios.post("http://localhost:3000/api/auth/foodpartner/login", {
       email, password
     }, {
       withCredentials: true
     })
 
-    console.log(response.data)
 
     navigate("/create-food")
 

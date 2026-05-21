@@ -31,7 +31,7 @@ export default function FoodPartnerRegister() {
 
     const { businessName, contactPerson, email, phone, password } = form.values
 
-    const reponse = await axios.post("http://localhost:3000/api/auth/foodpartner/register", {
+     await axios.post("http://localhost:3000/api/auth/foodpartner/register", {
       name: businessName, contactName: contactPerson, email, phone, password
     }, {
       withCredentials: true
@@ -46,7 +46,6 @@ export default function FoodPartnerRegister() {
       password: '',
     })
 
-    console.log(reponse.data)
 
     // navigate("/create-food")
 

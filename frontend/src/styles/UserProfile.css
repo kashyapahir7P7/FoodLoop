@@ -1,146 +1,226 @@
+/* =========================================
+   GLOBAL RESET
+========================================= */
 html,
 body,
 #root {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
+/* =========================================
+   MAIN PAGE CONTAINER (Smooth Scroll Fix)
+========================================= */
 .profile-page {
-  min-height: 100vh;
-  overflow-y: auto;
-  background: #000;
+  height: 100vh;
+  overflow-y: auto; 
+  scroll-behavior: smooth;
+  background: #000000;
   color: white;
-  padding: 20px 16px 100px;
+  padding: 20px 16px 100px; 
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* સ્ક્રોલબાર છુપાવવા */
+.profile-page::-webkit-scrollbar {
+  display: none;
+}
+.profile-page {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =========================================
+   HEADER
+========================================= */
 .profile-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .profile-header h1 {
-  font-size: 32px;
+  font-size: 25px;
+  margin: auto;
   font-weight: 700;
 }
 
-.profile-settings-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid #2a2a2a;
-  background: #111;
-  color: white;
+/* =========================================
+   AESTHETIC PROFILE CARD (Horizontal Layout)
+========================================= */
+.profile-card {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  margin: 20px 0;
+  border-radius: 24px;
+  
+background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   USER AVATAR & GLOW RING
+========================================= */
+.profile-image-wrapper {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  padding: 3.5px;
+  
+  /* નિયોન પિંક/પર્પલ ગ્રેડિયન્ટ */
+  background: linear-gradient(135deg, #ff0844 0%, #ffb199 50%, #96deda 100%);
+  animation: pulse-user-ring 3s infinite ease-in-out;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
 }
 
-.profile-card {
-  background: linear-gradient(to bottom, #111, #0a0a0a);
-  border: 1px solid #1f1f1f;
-  border-radius: 28px;
-  padding: 32px 20px;
-  text-align: center;
-}
-
-.profile-image-wrapper {
-  width: 130px;
-  height: 130px;
-  margin: auto;
-  border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, #ff7b00, #ff006a);
+.profile-image-wrapper:hover {
+  transform: scale(1.05) rotate(-3deg);
+  box-shadow: 0 0 25px rgba(255, 8, 68, 0.5);
 }
 
 .profile-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #000;
+  object-fit: cover;
+  border: 3px solid #0d0d0d;
+}
+
+/* શ્વાસ લેતો હોય તેવો ગ્લો */
+@keyframes pulse-user-ring {
+  0% { box-shadow: 0 0 10px rgba(255, 8, 68, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(255, 8, 68, 0.6); }
+  100% { box-shadow: 0 0 10px rgba(255, 8, 68, 0.3); }
+}
+
+/* =========================================
+   USER DETAILS (Left Aligned)
+========================================= */
+.profile-details-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .profile-name {
-  font-size: 30px;
-  margin-top: 18px;
-  font-weight: 700;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.3px;
 }
 
 .profile-username {
-  color: #9c9c9c;
-  margin-top: 8px;
-  font-size: 17px;
+  margin: 2px 0 0 0;
+  font-size: 13px;
+  color: #ff4757;
+  font-weight: 600;
 }
 
 .profile-bio {
-  margin-top: 16px;
-  color: #d1d1d1;
-  line-height: 1.6;
-  font-size: 15px;
+  margin: 10px 0 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
 }
 
 .joined-date {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 18px;
-  color: #8a8a8a;
-  font-size: 14px;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* =========================================
+   STATS (Likes, Saved, Following)
+========================================= */
 .profile-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex; 
+  width: 100%;
   gap: 14px;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .stat-card {
-  background: #111;
-  border: 1px solid #1f1f1f;
-  border-radius: 22px;
-  padding: 20px 10px;
+  flex: 1; 
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 16px 10px;
   text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .stat-card svg {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: #9c9c9c;
 }
 
 .stat-card h3 {
-  font-size: 28px;
-  margin-bottom: 6px;
+  font-size: 24px;
+  margin: 0 0 4px 0;
+  font-weight: 700;
 }
 
 .stat-card p {
   color: #9c9c9c;
-  font-size: 14px;
+  font-size: 13px;
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
+/* =========================================
+   MENU OPTIONS
+========================================= */
 .profile-menu {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  margin-top: 28px;
+  gap: 14px;
+  margin-top: 24px;
 }
 
 .menu-item {
   width: 100%;
   background: #111;
   border: 1px solid #1f1f1f;
-  border-radius: 24px;
-  padding: 18px;
+  border-radius: 20px;
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-item:hover {
+  background: #1a1a1a;
 }
 
 .menu-left {
@@ -150,38 +230,28 @@ body,
 }
 
 .menu-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.save-icon {
-  background: rgba(255, 179, 0, 0.12);
-  color: #ffb300;
-}
-
-.like-icon {
-  background: rgba(255, 0, 85, 0.12);
-  color: #ff0055;
-}
-
-.logout-icon {
-  background: rgba(255, 0, 0, 0.12);
-  color: #ff4d4d;
-}
+.save-icon { background: rgba(255, 179, 0, 0.12); color: #ffb300; }
+.like-icon { background: rgba(255, 0, 85, 0.12); color: #ff0055; }
+.logout-icon { background: rgba(255, 0, 0, 0.12); color: #ff4d4d; }
 
 .menu-item h4 {
-  font-size: 18px;
-  margin-bottom: 5px;
+  font-size: 16px;
+  margin: 0 0 4px 0;
   text-align: left;
 }
 
 .menu-item p {
   color: #9c9c9c;
-  font-size: 14px;
+  font-size: 13px;
+  margin: 0;
   text-align: left;
 }
 
@@ -189,41 +259,54 @@ body,
   margin-top: 6px;
 }
 
-@media (max-width: 600px) {
-  .profile-header h1 {
-    font-size: 28px;
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+@media (max-width: 480px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap: 16px;
   }
+  
+  .profile-details-holder {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-name { font-size: 22px; }
+  .profile-bio { text-align: center; }
 
-  .profile-name {
-    font-size: 26px;
-  }
+  .profile-stats { gap: 8px; }
+  .stat-card { padding: 14px 6px; }
+  .stat-card h3 { font-size: 20px; }
+  .stat-card p { font-size: 11px; }
 
-  .profile-stats {
-    gap: 10px;
-  }
+  .menu-item { padding: 12px 16px; }
+  .menu-icon { width: 44px; height: 44px; }
+  .menu-item h4 { font-size: 15px; }
+}
 
-  .stat-card {
-    padding: 18px 8px;
-  }
+/* =========================================
+   APP VERSION FOOTER
+========================================= */
+.app-version-footer {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
 
-  .stat-card h3 {
-    font-size: 22px;
-  }
-
-  .menu-item {
-    padding: 16px;
-  }
-
-  .menu-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .menu-item h4 {
-    font-size: 16px;
-  }
-
-  .menu-item p {
-    font-size: 13px;
-  }
+.app-version-footer p {
+  margin: 0;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.25); /* એકદમ ઝાંખો કલર જેથી આંખે ન વાગે */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }

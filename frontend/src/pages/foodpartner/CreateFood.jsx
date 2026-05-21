@@ -45,11 +45,10 @@ const CreateFood = () => {
       SubmitData.append('description', formData.description),
       SubmitData.append('video', formData.video)
 
-    const response = await axios.post("http://localhost:3000/api/food", SubmitData, {
+     await axios.post("http://localhost:3000/api/food", SubmitData, {
       withCredentials: true
     })
 
-    console.log(response.data)
     navigate("/")
   };
 
@@ -163,7 +162,7 @@ const CreateFood = () => {
           {/* Submit Button */}
           <button className="publish-btn">
 
-            Publish Food Reel 🚀
+            Publish Food Reel 
 
           </button>
 

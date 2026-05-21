@@ -1,110 +1,126 @@
 /* =========================================
-   FOODLOOP PROFILE PAGE - AESTHETIC DARK UI
-   Premium Modern Mobile First Design
+   MAIN PAGE CONTAINER (Smooth Scroll Fix)
 ========================================= */
-
 .profile-page {
-  .profile-page {
-    min-height: 100dvh;
-    overflow-y: auto;
-  }
-  width: 100%;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(34, 197, 94, 0.12),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at top right,
-      rgba(59, 130, 246, 0.12),
-      transparent 30%
-    ),
-    linear-gradient(180deg, #050505 0%, #0d0d0d 100%);
+  height: 100vh; /* સ્ક્રીન જેટલી જ હાઇટ */
+  overflow-y: auto; /* અંદર જ સ્ક્રોલ થશે */
+  scroll-behavior: smooth;
+  padding-bottom: 90px; /* બોટમ મેનુ માટે જગ્યા */
+  background-color: #000000; /* ડાર્ક થીમ બેકગ્રાઉન્ડ */
+}
+
+/* સ્ક્રોલબાર છુપાવવા માટે */
+.profile-page::-webkit-scrollbar {
+  display: none;
+}
+.profile-page {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =========================================
+   TOP NAVIGATION BAR
+========================================= */
+.profile-top-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px 8px 0;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
-}
-
-/* Main container */
-.profile-container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.back-btn {
-  width: 44px;
-
-  height: 44px;
-
-  border-radius: 50%;
-
-  border: 1px solid #2a2a2a;
-
-  background: #111;
-
-  color: white;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.back-icon {
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover .back-icon {
+  transform: translateX(-4px);
+}
+
+@media (max-width: 768px) {
+  .profile-top-bar {
+    margin-bottom: 16px;
+  }
+  .back-button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
 }
 
 /* =========================================
-   Loading State
+   HERO SECTION (Main Container)
 ========================================= */
-
-.loading {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-/* =========================================
-   PROFILE HEADER
-========================================= */
-
-.profile-header {
+.profile-hero {
   position: relative;
-  padding: 28px 18px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-}
-
-/* Top Section */
-
-.profile-top {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-/* =========================================
-   AVATAR
-========================================= */
-
-.profile-avatar {
-  position: relative;
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
+  margin-bottom: 32px;
+  padding: 32px;
+  border-radius: 24px;
   overflow: hidden;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* =========================================
+   TOP CONTENT
+========================================= */
+.profile-top-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* =========================================
+   AVATAR (Neon Glow Ring Added)
+========================================= */
+.profile-avatar {
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
-  padding: 3px;
-
-  background: linear-gradient(135deg, #22c55e, #3b82f6, #9333ea);
-
-  box-shadow:
-    0 0 20px rgba(59, 130, 246, 0.35),
-    0 0 40px rgba(147, 51, 234, 0.25);
+  border-radius: 50%;
+  padding: 4px;
+  /* સાયન (Cyan) થી પર્પલ (Purple) ગ્રેડિયન્ટ */
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
+  /* બહારનો ગ્લો */
+  box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
 }
 
 .profile-avatar img {
@@ -112,169 +128,182 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  background: #111;
+  border: 3px solid #121212;
 }
 
 /* =========================================
-   BUSINESS INFO
+   INFO & BADGE
 ========================================= */
-
 .profile-info {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .business-name {
   margin: 0;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   letter-spacing: -0.5px;
   color: #ffffff;
 }
 
 .business-address {
-  margin-top: 6px;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 13px;
-  line-height: 1.5;
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
 }
-
-/* =========================================
-   PROFILE BIO TAG
-========================================= */
 
 .profile-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  margin-top: 10px;
-  padding: 7px 14px;
-
-  border-radius: 999px;
-
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-
-  color: #4ade80;
-  font-size: 12px;
-  font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap; 
+    flex-shrink: 0; 
 }
 
 /* =========================================
-   STATS SECTION
+   STATS (New Glowing Cards)
 ========================================= */
-
 .profile-stats {
-  margin-top: 28px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  display: flex;
+  gap: 16px;
 }
 
-/* =========================================
-   STAT CARD
-========================================= */
-
+/* Base Box Style */
 .stat-box {
-  position: relative;
-  overflow: hidden;
-
-  padding: 18px;
-
-  border-radius: 20px;
-
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0.03)
-  );
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  backdrop-filter: blur(16px);
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 105px;
+  padding: 18px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   transition: all 0.3s ease;
 }
 
-.stat-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    135deg,
-    rgba(34, 197, 94, 0.08),
-    rgba(59, 130, 246, 0.08)
-  );
-
-  opacity: 0;
-  transition: 0.3s;
+.stat-value {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
 }
-
-.stat-box:hover::before {
-  opacity: 1;
-}
-
-.stat-box:hover {
-  transform: translateY(-3px);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-/* Label */
 
 .stat-label {
-  margin: 0;
+  margin: 6px 0 0;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.5);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* Value */
-
-.stat-value {
-  margin-top: 8px;
-  margin-bottom: 0;
-
-  font-size: 24px;
-  font-weight: 700;
-
-  background: linear-gradient(135deg, #22c55e, #3b82f6);
-
+/* 1. Reels Glow (Cyan) */
+.reels-card {
+  box-shadow:
+    inset 0 0 20px rgba(0, 242, 254, 0.05),
+    0 0 15px rgba(0, 242, 254, 0.05);
+  border-color: rgba(0, 242, 254, 0.2);
+}
+.reels-card .stat-value {
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* =========================================
-   VIDEOS GRID
-========================================= */
+/* 2. Followers Glow (Green) */
+.followers-card {
+  box-shadow:
+    inset 0 0 20px rgba(34, 197, 94, 0.05),
+    0 0 15px rgba(34, 197, 94, 0.05);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+.followers-card .stat-value {
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+/* 3. likes Glow (Gold/Yellow) */
+.likes-card {
+  box-shadow:
+    inset 0 0 20px rgba(250, 204, 21, 0.05),
+    0 0 15px rgba(250, 204, 21, 0.05);
+  border-color: rgba(250, 204, 21, 0.2);
+}
+.likes-card .stat-value {
+  background: linear-gradient(135deg, #facc15, #fef08a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-box:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+@media (max-width: 768px) {
+  .profile-hero {
+    padding: 24px 20px;
+  }
+  .profile-top-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .profile-identity {
+    gap: 16px;
+  }
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  .business-name {
+    font-size: 24px;
+  }
+  .profile-stats {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: auto;
+    padding: 14px 8px;
+  }
+  .stat-value {
+    font-size: 22px;
+  }
+}
+
+/* =========================================
+   VIDEOS GRID & VIDEO ITEM
+========================================= */
 .videos-grid {
   padding: 14px;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-/* =========================================
-   VIDEO ITEM
-========================================= */
-
 .video-item {
   position: relative;
   overflow: hidden;
-
   aspect-ratio: 9 / 16;
-
   border-radius: 16px;
-
   background: #151515;
-
   cursor: pointer;
-
   transition: transform 0.25s ease;
 }
 
@@ -282,168 +311,134 @@
   transform: scale(0.97);
 }
 
-/* Video */
-
 .video-item video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Overlay */
-
 .video-item::after {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 45%);
 }
-
-/* =========================================
-   PLAY ICON
-========================================= */
 
 .video-item .play-icon {
   position: absolute;
   bottom: 10px;
   right: 10px;
-
   width: 34px;
   height: 34px;
-
   border-radius: 50%;
-
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(10px);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: white;
   font-size: 14px;
-
   z-index: 5;
 }
 
 /* =========================================
-   REEL MODAL
+   STORE STATUS (Open/Closed)
 ========================================= */
-
-.reel-modal {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(0, 0, 0, 0.92);
-
-  z-index: 999;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: 0.3s ease;
+.store-status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  margin-bottom: 2px;
 }
 
-.reel-modal.active {
-  opacity: 1;
-  visibility: visible;
+.status-dot {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.reel-modal-content {
-  width: 100%;
-  height: 100%;
+.status-dot.open {
+  color: #4ade80; /* Green */
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+
+.status-dot.closed {
+  color: #ff4757; /* Red */
+  text-shadow: 0 0 10px rgba(255, 71, 87, 0.4);
+}
+
+.status-time {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 /* =========================================
-   CLOSE BUTTON
+   BADGE & FOLLOW BUTTON CONTAINER
 ========================================= */
+.badge-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
 
-.close-btn {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+.follow-partner-btn {
+    padding: 7px 22px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
 
-  width: 42px;
-  height: 42px;
+.follow-partner-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
 
-  border: none;
-  border-radius: 50%;
+.follow-partner-btn.following {
+  /* Following State */
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
+.follow-partner-btn.following:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   CUISINE TAGS
+========================================= */
+.cuisine-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.cuisine-tag {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease;
+}
+
+.cuisine-tag:hover {
   background: rgba(255, 255, 255, 0.12);
-
-  backdrop-filter: blur(10px);
-
-  color: white;
-  font-size: 18px;
-
-  cursor: pointer;
-
-  z-index: 1000;
-
-  transition: 0.25s ease;
-}
-
-.close-btn:hover {
-  transform: rotate(90deg);
-  background: rgba(255, 255, 255, 0.22);
-}
-
-/* =========================================
-   SCROLLBAR
-========================================= */
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-/* =========================================
-   MOBILE OPTIMIZATION
-========================================= */
-
-@media (max-width: 480px) {
-  .profile-header {
-    padding: 24px 16px 22px;
-  }
-
-  .profile-top {
-    gap: 14px;
-  }
-
-  .profile-avatar {
-    width: 84px;
-    height: 84px;
-  }
-
-  .business-name {
-    font-size: 20px;
-  }
-
-  .business-address {
-    font-size: 12px;
-  }
-
-  .profile-stats {
-    gap: 12px;
-  }
-
-  .stat-box {
-    padding: 15px;
-    border-radius: 16px;
-  }
-
-  .stat-value {
-    font-size: 20px;
-  }
-
-  .videos-grid {
-    gap: 8px;
-    padding: 10px;
-  }
-
-  .video-item {
-    border-radius: 12px;
-  }
 }

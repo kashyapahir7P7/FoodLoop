@@ -1,16 +1,16 @@
 const mongoose = require("mongoose")
 
 const foodparterSchema = new mongoose.Schema({
-    name : {
+    name: {
         type: String,
         required: true
 
     },
-    contactName:{
+    contactName: {
         type: String,
         required: true
     },
-    phone:{
+    phone: {
         type: String,
         required: true
     },
@@ -22,7 +22,10 @@ const foodparterSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    openingTime: { type: String, default: "09:00" },
+    closingTime: { type: String, default: "22:00" },
+    cuisines: [{ type: String }]
 })
 
 const foodParterModel = mongoose.model("foodparter", foodparterSchema)
