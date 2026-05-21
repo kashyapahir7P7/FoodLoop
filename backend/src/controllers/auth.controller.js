@@ -3,13 +3,16 @@ const foodParterModel = require("../model/foodparter.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-async function RegisterUserController(req, res) {
+const cookieOptions = {
+    httpOnly: true,
+    secure: true,        
+    sameSite: 'none'     
+}
 
+async function RegisterUserController(req, res) {
     const { fullName, email, password } = req.body
 
-    const IsuseralreadyExist = await userModel.findOne({
-        email
-    })
+    const IsuseralreadyExist = await userModel.findOne({ email })
 
     if (IsuseralreadyExist) {
         return res.status(400).json({
@@ -23,7 +26,7 @@ async function RegisterUserController(req, res) {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-    res.cookie("token", token)
+    res.cookie("token", token, cookieOptions)
 
     res.status(201).json({
         message: "User registred successfully",
@@ -33,11 +36,9 @@ async function RegisterUserController(req, res) {
             fullName: user.fullName
         }
     })
-
 }
 
 async function LoginUserController(req, res) {
-
     const { email, password } = req.body
 
     const user = await userModel.findOne({ email })
@@ -58,7 +59,7 @@ async function LoginUserController(req, res) {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-    res.cookie("token", token)
+    res.cookie("token", token, cookieOptions)
 
     res.status(200).json({
         message: "User logged in successfully",
@@ -71,15 +72,11 @@ async function LoginUserController(req, res) {
 }
 
 async function LogoutUserController(req, res) {
-
-    res.clearCookie("token")
+    res.clearCookie("token", cookieOptions)
     res.status(200).json({
         message: "User logged out successfully!"
     })
-
 }
-
-// Food Parter Controller
 
 async function RegisterFoodPartner(req, res) {
     const { name, email, password, contactName, phone } = req.body
@@ -97,7 +94,8 @@ async function RegisterFoodPartner(req, res) {
     const foodPartner = await foodParterModel.create({ email, name, password: hashPassword, contactName, phone })
 
     const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET)
-    res.cookie("token", token)
+    
+    res.cookie("token", token, cookieOptions)
 
     res.status(201).json({
         message: "Food partner registred successfully",
@@ -109,7 +107,6 @@ async function RegisterFoodPartner(req, res) {
             phone: foodPartner.phone
         }
     })
-
 }
 
 async function LoginFoodPartner(req, res) {
@@ -132,7 +129,8 @@ async function LoginFoodPartner(req, res) {
     }
 
     const token = jwt.sign({ id: foodpartner._id }, process.env.JWT_SECRET)
-    res.cookie("token", token)
+    
+    res.cookie("token", token, cookieOptions)
 
     res.status(200).json({
         message: "FoodPartner logged in successfully!",
@@ -140,13 +138,12 @@ async function LoginFoodPartner(req, res) {
             name: foodpartner.name,
             id: foodpartner._id,
             email: foodpartner.email
-
         }
     })
 }
 
 function logoutFoodPartner(req, res) {
-    res.clearCookie("token")
+    res.clearCookie("token", cookieOptions)
     res.status(200).json({
         message: "FoodPartner logged out successfully!"
     })
