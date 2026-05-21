@@ -45,7 +45,7 @@ const CreateFood = () => {
       SubmitData.append('description', formData.description),
       SubmitData.append('video', formData.video)
 
-     await axios.post("http://localhost:3000/api/food", SubmitData, {
+     await axios.post("https://foodloop-ailt.onrender.com/api/food", SubmitData, {
       withCredentials: true
     })
 

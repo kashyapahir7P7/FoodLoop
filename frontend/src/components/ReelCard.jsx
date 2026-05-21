@@ -28,7 +28,7 @@ const ReelCard = ({ reel }) => {
         try {
 
             const response = await axios.post(
-                "http://localhost:3000/api/food/like",
+                "https://foodloop-ailt.onrender.com/api/food/like",
                 {
                     foodId: reel._id
                 },
@@ -54,7 +54,7 @@ const ReelCard = ({ reel }) => {
 
         try {
             const response = await axios.post(
-                "http://localhost:3000/api/food/save",
+                "https://foodloop-ailt.onrender.com/api/food/save",
                 {
                     foodId: reel._id
                 },

@@ -31,7 +31,7 @@ export default function FoodPartnerRegister() {
 
     const { businessName, contactPerson, email, phone, password } = form.values
 
-     await axios.post("http://localhost:3000/api/auth/foodpartner/register", {
+     await axios.post("https://foodloop-ailt.onrender.com/api/auth/foodpartner/register", {
       name: businessName, contactName: contactPerson, email, phone, password
     }, {
       withCredentials: true

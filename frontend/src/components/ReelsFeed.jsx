@@ -37,7 +37,7 @@ const ReelsFeed = () => {
     }, [reels.length]);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/food", { withCredentials: true })
+        axios.get("https://foodloop-ailt.onrender.com/api/food", { withCredentials: true })
             .then(response => {
                 setReels(response.data.foodItems)
             })

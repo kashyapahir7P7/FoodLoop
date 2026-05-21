@@ -11,7 +11,7 @@ const LikedFeed = () => {
         const fetchLikedFoods = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:3000/api/food/liked",
+                    "https://foodloop-ailt.onrender.com/api/food/liked",
                     {
                         withCredentials: true
                     }

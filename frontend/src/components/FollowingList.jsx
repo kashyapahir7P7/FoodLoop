@@ -12,7 +12,7 @@ const FollowingList = () => {
         const fetchFollowing = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:3000/api/follow/my-following",
+                    "https://foodloop-ailt.onrender.com/api/follow/my-following",
                     { withCredentials: true }
                 );
                 

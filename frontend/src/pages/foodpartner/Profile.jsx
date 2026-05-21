@@ -30,14 +30,14 @@ const Profile = () => {
         const fetchData = async () => {
             try {
                 const profileRes = await axios.get(
-                    `http://localhost:3000/api/food/foodpartner/${id}`,
+                    `https://foodloop-ailt.onrender.com/api/food/foodpartner/${id}`,
                     { withCredentials: true }
                 );
                 setProfile(profileRes.data.foodPartner);
                 setVideos(profileRes.data.foodPartner.foodItems);
 
                 const followRes = await axios.get(
-                    `http://localhost:3000/api/follow/status/${id}`,
+                    `https://foodloop-ailt.onrender.com/api/follow/status/${id}`,
                     { withCredentials: true }
                 );
                 setIsFollowing(followRes.data.isFollowing);
@@ -60,7 +60,7 @@ const Profile = () => {
 
         try {
             await axios.post(
-                "http://localhost:3000/api/follow/toggle",
+                "https://foodloop-ailt.onrender.com/api/follow/toggle",
                 { foodPartnerId: id },
                 { withCredentials: true }
             );
