@@ -5,7 +5,8 @@ import {
     MessageCircle,
     Bookmark,
     Home,
-    User} from 'lucide-react';
+    User
+} from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
 import { useVideoVisibility } from '../hooks/useVideoVisibility';
@@ -20,6 +21,7 @@ const ReelCard = ({ reel }) => {
     const [likeCount, setLikeCount] = useState(reel.likeCount || 0);
     const [saved, setSaved] = useState(reel.isSaved || false);
     const [saveCount, setSaveCount] = useState(reel.saveCount || 0);
+    const [showFullDesc, setShowFullDesc] = useState(false);
 
     const location = useLocation();
 
@@ -108,9 +110,28 @@ const ReelCard = ({ reel }) => {
                         {reel.name}
                     </h2>
 
-                    <p className="reel-description">
-                        {reel.description}
-                    </p>
+                    <div className="reel-description-container" onClick={() => setShowFullDesc(!showFullDesc)} style={{ cursor: 'pointer' }}>
+                        <p className="reel-description" style={{ display: 'inline', margin: 0 }}>
+                            {showFullDesc
+                                ? reel.description
+                                : (reel.description?.length > 55
+                                    ? reel.description.substring(0, 55) + "..."
+                                    : reel.description
+                                )
+                            }
+                        </p>
+
+                        {reel.description?.length > 40 && (
+                            <span style={{
+                                fontWeight: '600',
+                                color: '#aaa',
+                                marginLeft: '5px',
+                                fontSize: '0.9em'
+                            }}>
+                                {showFullDesc ? "less" : "more"}
+                            </span>
+                        )}
+                    </div>
                 </div>
 
                 <Link

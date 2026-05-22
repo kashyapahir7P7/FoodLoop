@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import FormCheckbox from '../components/FormCheckbox';
 import { useForm } from '../hooks/useForm';
-import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export default function UserLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(""); 
   const navigate = useNavigate();
 
   const form = useForm({
@@ -23,13 +24,26 @@ export default function UserLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg(""); 
 
-    const { email, password } = form.values
+    const { email, password } = form.values;
 
-     await axios.post("/api/auth/user/login", { email, password }, { withCredentials: true })
+    if (!email || !password) {
+        setErrorMsg("Please fill in all fields!");
+        return;
+    }
 
-    navigate("/");
+    setIsLoading(true);
 
+    try {
+      await axios.post("/api/auth/user/login", { email, password }, { withCredentials: true });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      setErrorMsg(error.response?.data?.message || "Invalid Email or Password. Please try again.");
+    } finally {
+      setIsLoading(false); 
+    }
   };
 
   return (
@@ -92,10 +106,18 @@ export default function UserLogin() {
               </Link>
             </div>
 
+            {/* Error Message UI */}
+            {errorMsg && (
+              <div style={{ color: '#ff4757', backgroundColor: 'rgba(255, 71, 87, 0.1)', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center', fontSize: '14px' }}>
+                  ⚠️ {errorMsg}
+              </div>
+            )}
+
             <FormButton
               label="Sign In"
-              loading={form.loading}
+              loading={isLoading}
               loadingText="Signing in..."
+              disabled={isLoading}
             />
           </form>
 

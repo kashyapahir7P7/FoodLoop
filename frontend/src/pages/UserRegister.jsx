@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import FormCheckbox from '../components/FormCheckbox';
 import { useForm } from '../hooks/useForm';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
-import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export default function UserRegister() {
   const [showPassword, setShowPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const form = useForm({
     firstName: '',
@@ -21,6 +22,7 @@ export default function UserRegister() {
   });
 
   const { togglePasswordVisibility } = usePasswordToggle();
+  
   const handlePasswordToggle = () => {
     togglePasswordVisibility('password');
     setShowPassword(!showPassword);
@@ -28,29 +30,41 @@ export default function UserRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
 
     const { firstName, lastName, email, password } = form.values;
 
-    try {
+    // વેલિડેશન
+    if (!firstName || !lastName || !email || !password) {
+        setErrorMsg("All fields are required!");
+        return;
+    }
 
+    if (password.length < 6) {
+        setErrorMsg("Password must be at least 6 characters long!");
+        return;
+    }
+
+    setIsLoading(true);
+
+    try {
       await axios.post("/api/auth/user/register", {
         fullName: firstName + " " + lastName,
         email,
         password
       }, {
         withCredentials: true
-      }
-      );
+      });
 
-      form.setValues({ firstName: "", lastName: "", email: "", password: "" })
+      form.setValues({ firstName: "", lastName: "", email: "", password: "" });
+      navigate("/user/login"); // રજીસ્ટર થાય એટલે સીધા લોગીન પર
 
-
-      navigate("/")
-
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
+      setErrorMsg(error.response?.data?.message || "Registration failed. Email might already exist.");
+    } finally {
+      setIsLoading(false);
     }
-
   };
 
   return (
@@ -115,10 +129,11 @@ export default function UserRegister() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               error={form.touched.password ? form.errors.password : ''}
-              help="At least 8 characters with uppercase, lowercase, and numbers"
+              help="At least 6 characters"
               required
               showPasswordToggle
               onPasswordToggle={handlePasswordToggle}
+              isPasswordVisible={showPassword}
             />
 
             <FormCheckbox
@@ -148,11 +163,18 @@ export default function UserRegister() {
               </div>
             )}
 
+            {/* Error Message UI */}
+            {errorMsg && (
+              <div style={{ color: '#ff4757', backgroundColor: 'rgba(255, 71, 87, 0.1)', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center', fontSize: '14px' }}>
+                  ⚠️ {errorMsg}
+              </div>
+            )}
+
             <FormButton
               label="Create Account"
-              loading={form.loading}
+              loading={isLoading}
               loadingText="Creating account..."
-              disabled={!agreedToTerms}
+              disabled={!agreedToTerms || isLoading}
             />
           </form>
 

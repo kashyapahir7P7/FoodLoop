@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import FormCheckbox from '../components/FormCheckbox';
 import { useForm } from '../hooks/useForm';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 
 export default function FoodPartnerRegister() {
   const [showPassword, setShowPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  // const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const form = useForm({
     businessName: '',
@@ -28,27 +28,46 @@ export default function FoodPartnerRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
 
-    const { businessName, contactPerson, email, phone, password } = form.values
+    const { businessName, contactPerson, email, phone, businessType, password } = form.values;
 
-     await axios.post("/api/auth/foodpartner/register", {
-      name: businessName, contactName: contactPerson, email, phone, password
-    }, {
-      withCredentials: true
-    })
+    if (!businessName || !contactPerson || !email || !phone || !businessType || !password) {
+        setErrorMsg("All fields are required!");
+        return;
+    }
 
-    form.setValues({
-      businessName: '',
-      contactPerson: '',
-      email: '',
-      phone: '',
-      businessType: '',
-      password: '',
-    })
+    if (password.length < 6) {
+        setErrorMsg("Password must be at least 6 characters long!");
+        return;
+    }
 
+    setIsLoading(true);
 
-    // navigate("/create-food")
+    try {
+      await axios.post("/api/auth/foodpartner/register", {
+        name: businessName, contactName: contactPerson, email, phone, password
+      }, {
+        withCredentials: true
+      });
 
+      form.setValues({
+        businessName: '',
+        contactPerson: '',
+        email: '',
+        phone: '',
+        businessType: '',
+        password: '',
+      });
+
+      navigate("/foodpartner/login"); 
+
+    } catch (error) {
+      console.log(error);
+      setErrorMsg(error.response?.data?.message || "Registration failed. Email might already exist.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -120,7 +139,6 @@ export default function FoodPartnerRegister() {
                 Business Type
               </label>
               <select
-                name="businesType"
                 id="businessType"
                 name="businessType"
                 className="form-input"
@@ -156,7 +174,7 @@ export default function FoodPartnerRegister() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               error={form.touched.password ? form.errors.password : ''}
-              help="At least 8 characters with uppercase, lowercase, and numbers"
+              help="At least 6 characters"
               required
               showPasswordToggle
               onPasswordToggle={handlePasswordToggle}
@@ -190,11 +208,18 @@ export default function FoodPartnerRegister() {
               </div>
             )}
 
+            {/* Error Message UI */}
+            {errorMsg && (
+              <div style={{ color: '#ff4757', backgroundColor: 'rgba(255, 71, 87, 0.1)', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center', fontSize: '14px' }}>
+                  ⚠️ {errorMsg}
+              </div>
+            )}
+
             <FormButton
               label="Create Business Account"
-              loading={form.loading}
+              loading={isLoading}
               loadingText="Creating account..."
-              disabled={!agreedToTerms}
+              disabled={!agreedToTerms || isLoading}
             />
           </form>
 

@@ -64,6 +64,8 @@ const CreateFood = () => {
           description: "",
           video: null
         });
+
+        setIsUploading(false);
       }, 2500);
 
     } catch (error) {
