@@ -17,6 +17,7 @@ const UserProfile = () => {
 
     const [profile, setProfile] = useState(null);
     const [followingCount, setFollowingCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate()
 
 
@@ -33,6 +34,9 @@ const UserProfile = () => {
                 }
             } catch (error) {
                 console.log(error);
+            }
+            finally {
+                setIsLoading(false);
             }
         };
 
@@ -72,6 +76,61 @@ const UserProfile = () => {
         const index = firstName.length % bios.length;
         return bios[index];
     };
+
+    // skeleton loader while fetching profile data
+    if (isLoading) {
+        return (
+            <div className="profile-page">
+                {/* Header Skeleton */}
+                <div className="profile-header">
+                    <div className="profile-top-bar" style={{ opacity: 0.5 }}>
+                        <button className="back-button"><span className="back-icon">←</span> Back</button>
+                    </div>
+                    <div className="profile-top-bar">
+                        <h1>Profile</h1>
+                    </div>
+                    <div className="profile-top-bar"></div>
+                </div>
+
+                {/* Profile Card Skeleton */}
+                <div className="profile-card skeleton-card">
+                    <div className="skeleton-avatar"></div>
+                    <div className="profile-details-holder" style={{ width: '100%', alignItems: 'flex-start' }}>
+                        <div className="skeleton-line skeleton-title"></div>
+                        <div className="skeleton-line skeleton-subtitle"></div>
+                        <div className="skeleton-line skeleton-bio"></div>
+                        <div className="skeleton-line skeleton-date"></div>
+                    </div>
+                </div>
+
+                {/* Stats Skeleton */}
+                <div className="profile-stats">
+                    {[1, 2, 3].map((item) => (
+                        <div className="stat-card skeleton-stat" key={item}>
+                            <div className="skeleton-circle"></div>
+                            <div className="skeleton-line skeleton-number"></div>
+                            <div className="skeleton-line skeleton-label"></div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Menu Skeleton */}
+                <div className="profile-menu">
+                    {[1, 2, 3, 4].map((item) => (
+                        <div className="menu-item skeleton-menu-item" key={item}>
+                            <div className="menu-left" style={{ width: '100%' }}>
+                                <div className="skeleton-icon-box"></div>
+                                <div style={{ width: '70%' }}>
+                                    <div className="skeleton-line skeleton-menu-title"></div>
+                                    <div className="skeleton-line skeleton-menu-desc"></div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
 
     return (
 

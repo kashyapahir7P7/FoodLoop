@@ -310,3 +310,43 @@ background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 25
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
+
+/* skeleton UI  */
+
+/* --- SKELETON LOADING EFFECTS --- */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.6; }
+}
+
+.skeleton-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #333;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-line {
+    background-color: #333;
+    border-radius: 4px;
+    height: 14px;
+    margin-bottom: 8px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-title { width: 60%; height: 20px; margin-bottom: 12px; }
+.skeleton-subtitle { width: 40%; height: 12px; }
+.skeleton-bio { width: 90%; height: 35px; margin-top: 10px; }
+.skeleton-date { width: 30%; height: 12px; margin-top: 10px; }
+
+.skeleton-stat { justify-content: center; align-items: center; }
+.skeleton-circle { width: 30px; height: 30px; border-radius: 50%; background-color: #333; margin-bottom: 10px; animation: pulse 1.5s infinite ease-in-out;}
+.skeleton-number { width: 40px; height: 20px; margin: 0 auto 5px auto; }
+.skeleton-label { width: 50px; height: 12px; margin: 0 auto; }
+
+.skeleton-menu-item { opacity: 0.8; }
+.skeleton-icon-box { width: 40px; height: 40px; border-radius: 12px; background-color: #333; animation: pulse 1.5s infinite ease-in-out;}
+.skeleton-menu-title { width: 100px; height: 16px; margin-bottom: 5px; }
+.skeleton-menu-desc { width: 180px; height: 12px; margin-bottom: 0; }
