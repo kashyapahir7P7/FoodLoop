@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "../../styles/create-food.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const CreateFood = () => {
 
   const [previewVideo, setPreviewVideo] = useState(null);
-  const navigate = useNavigate();
+  const [isUploading, setIsUploading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -41,19 +41,65 @@ const CreateFood = () => {
 
     const SubmitData = new FormData()
 
+    if (!formData.video || !formData.name) return;
+
+    setIsUploading(true);
+
     SubmitData.append('name', formData.name),
       SubmitData.append('description', formData.description),
       SubmitData.append('video', formData.video)
 
-     await axios.post("/api/food", SubmitData, {
-      withCredentials: true
-    })
+    try {
+      await axios.post("/api/food", SubmitData, {
+        withCredentials: true
+      });
 
-    navigate("/")
+      setShowToast(true);
+
+      setTimeout(() => {
+        setShowToast(false);
+        setPreviewVideo(null);
+        setFormData({
+          name: "",
+          description: "",
+          video: null
+        });
+      }, 2500);
+
+    } catch (error) {
+      console.log(error);
+      setIsUploading(false);
+    }
+
   };
 
   return (
     <div className="create-food-page">
+
+      {showToast && (
+        <div style={{
+          position: 'absolute',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          padding: '12px 24px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          zIndex: 1000,
+          animation: 'slideDown 0.3s ease-out'
+        }}>
+          <span style={{ fontSize: '20px' }}>✓</span>
+          <span style={{ fontWeight: '600' }}>Reel Published Successfully!</span>
+          <style>{`
+                  @keyframes slideDown { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
+              `}</style>
+        </div>
+      )}
 
       <div className="create-food-container">
 
@@ -106,6 +152,7 @@ const CreateFood = () => {
                 accept="video/*"
                 hidden
                 onChange={handleVideoChange}
+                disabled={isUploading}
               />
 
             </label>
@@ -132,6 +179,7 @@ const CreateFood = () => {
                 placeholder="Cheese Burger"
                 value={formData.name}
                 onChange={handleChange}
+                disabled={isUploading}
               />
 
             </div>
@@ -149,6 +197,7 @@ const CreateFood = () => {
                 value={formData.description}
                 onChange={handleChange}
                 maxLength={120}
+                disabled={isUploading}
               />
 
               <span className="char-count">
@@ -160,10 +209,28 @@ const CreateFood = () => {
           </div>
 
           {/* Submit Button */}
-          <button className="publish-btn">
-
-            Publish Food Reel 
-
+          <button
+            type="submit"
+            className="publish-btn"
+            disabled={isUploading}
+            style={{
+              opacity: isUploading ? 0.7 : 1,
+              cursor: isUploading ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '10px'
+            }}
+          >
+            {isUploading ? (
+              <>
+                <div style={{ width: '20px', height: '20px', border: '3px solid rgba(255,255,255,0.3)', borderTop: '3px solid white', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                Publishing Reel...
+                <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
+              </>
+            ) : (
+              "Publish Food Reel"
+            )}
           </button>
 
         </form>
