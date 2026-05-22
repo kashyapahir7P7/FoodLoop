@@ -24,10 +24,10 @@ const UserProfile = () => {
         const fetchProfileData = async () => {
             try {
                 // 1. Profile Data
-                const profileRes = await axios.get("https://foodloop-ailt.onrender.com/api/auth/userprofile", { withCredentials: true });
+                const profileRes = await axios.get("/api/auth/userprofile", { withCredentials: true });
                 setProfile(profileRes.data);
 
-                const followRes = await axios.get("https://foodloop-ailt.onrender.com/api/follow/my-following", { withCredentials: true });
+                const followRes = await axios.get("/api/follow/my-following", { withCredentials: true });
                 if (followRes.data.success) {
                     setFollowingCount(followRes.data.count);
                 }
@@ -44,7 +44,7 @@ const UserProfile = () => {
     const handleLogout = async () => {
         try {
             await axios.post(
-                "https://foodloop-ailt.onrender.com/api/auth/user/logout",
+                "/api/auth/user/logout",
                 {},
                 {
                     withCredentials: true

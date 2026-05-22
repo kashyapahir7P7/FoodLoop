@@ -33,7 +33,7 @@ export default function UserRegister() {
 
     try {
 
-      await axios.post("https://foodloop-ailt.onrender.com/api/auth/user/register", {
+      await axios.post("/api/auth/user/register", {
         fullName: firstName + " " + lastName,
         email,
         password

@@ -17,7 +17,7 @@ const SavedFeed = () => {
             try {
 
                 const response = await axios.get(
-                    "https://foodloop-ailt.onrender.com/api/food/saved",
+                    "/api/food/saved",
                     {
                         withCredentials: true
                     }
@@ -59,8 +59,19 @@ const SavedFeed = () => {
 
             {/* Content Area */}
             {isLoading ? (
-                <div style={{ textAlign: 'center', color: '#888', marginTop: '50px' }}>
-                    Loading...
+                // loader 
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
+                    <div style={{
+                        width: '40px',
+                        height: '40px',
+                        border: '3px solid rgba(255, 255, 255, 0.1)',
+                        borderTop: '3px solid #ff4757',
+                        borderRadius: '50%',
+                        animation: 'spin 1s linear infinite'
+                    }}></div>
+                    <style>{`
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    `}</style>
                 </div>
             ) : savedFoods.length === 0 ? (
                 <div style={{
@@ -88,7 +99,7 @@ const SavedFeed = () => {
                         style={{
                             marginTop: '20px',
                             padding: '10px 24px',
-                            backgroundColor: '#ff4757', 
+                            backgroundColor: '#ff4757',
                             color: '#fff',
                             border: 'none',
                             borderRadius: '8px',

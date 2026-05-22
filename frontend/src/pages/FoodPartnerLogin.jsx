@@ -26,7 +26,7 @@ export default function FoodPartnerLogin() {
 
     const { email, password } = form.values
 
-     await axios.post("https://foodloop-ailt.onrender.com/api/auth/foodpartner/login", {
+     await axios.post("/api/auth/foodpartner/login", {
       email, password
     }, {
       withCredentials: true
